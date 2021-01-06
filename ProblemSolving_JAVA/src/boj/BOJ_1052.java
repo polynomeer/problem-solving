@@ -15,7 +15,7 @@ public class BOJ_1052 {
         }
 
         while (n > k) {
-            int bottle = addBottle(n);
+            int bottle = sumBottle(n);
             if (bottle <= k) {
                 System.out.println(answer);
                 return;
@@ -25,14 +25,15 @@ public class BOJ_1052 {
         }
 
         System.out.println(-1);
+        sc.close();
     }
 
-    private static int addBottle(int n) {
-        int bottle = 0;
+    private static int sumBottle(int n) {
+        int remains = 0;
         while (n > 0) {
-            if (n % 2 == 1) bottle++;
-            n = n / 2;
+            if (n % 2 == 1) remains++;
+            n /= 2;
         }
-        return bottle;
+        return remains;
     }
 }
