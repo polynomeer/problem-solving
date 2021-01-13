@@ -3,7 +3,7 @@ package leetcode;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class LongestCommonPrefix {
+public class LC_14 {
 
     public static String longestCommonPrefix(String[] strs) {
         if (strs.length == 0) return "";
