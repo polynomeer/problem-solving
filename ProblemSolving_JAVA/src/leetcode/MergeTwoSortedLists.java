@@ -3,7 +3,7 @@ package leetcode;
 import java.util.List;
 
 //  Definition for singly-linked list.
-class ListNode {
+/*class ListNode {
     int val;
     ListNode next;
 
@@ -18,7 +18,7 @@ class ListNode {
         this.val = val;
         this.next = next;
     }
-}
+}*/
 
 // reference: https://www.programcreek.com/2012/12/leetcode-merge-two-sorted-lists-java/
 public class MergeTwoSortedLists {
@@ -66,7 +66,7 @@ public class MergeTwoSortedLists {
 
         ListNode head = (mergeTwoLists(l1_1, l2_1));
 
-        while(head!=null){
+        while (head != null) {
             System.out.println(head.val);
             head = head.next;
         }
