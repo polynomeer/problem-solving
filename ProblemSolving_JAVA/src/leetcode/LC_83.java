@@ -18,8 +18,7 @@ class ListNode {
     }
 }
 
-public class RemoveDuplicatesFromSortedList {
-
+public class LC_83 {
 
     public ListNode deleteDuplicates(ListNode head) {
         if (head == null || head.next == null){
@@ -41,7 +40,7 @@ public class RemoveDuplicatesFromSortedList {
   
 
     public static void main(String[] args) {
-        RemoveDuplicatesFromSortedList removeDuplicatesFromSortedList = new RemoveDuplicatesFromSortedList();
+        LC_83 LC83 = new LC_83();
 
         ListNode l1_1 = new ListNode(1);
         ListNode l1_2 = new ListNode(1);
@@ -59,13 +58,13 @@ public class RemoveDuplicatesFromSortedList {
         l2_3.next = l2_4;
         l2_4.next = l2_5;
 
-        removeDuplicatesFromSortedList.printList(l1_1);
-        ListNode resultNode1 = removeDuplicatesFromSortedList.deleteDuplicates(l1_1);
-        removeDuplicatesFromSortedList.printList(resultNode1);
+        LC83.printList(l1_1);
+        ListNode resultNode1 = LC83.deleteDuplicates(l1_1);
+        LC83.printList(resultNode1);
         System.out.println();
-        removeDuplicatesFromSortedList.printList(l2_1);
-        ListNode resultNode2 = removeDuplicatesFromSortedList.deleteDuplicates(l2_1);
-        removeDuplicatesFromSortedList.printList(resultNode2);
+        LC83.printList(l2_1);
+        ListNode resultNode2 = LC83.deleteDuplicates(l2_1);
+        LC83.printList(resultNode2);
     }
 
     public void printList(ListNode node) {
