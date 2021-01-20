@@ -24,7 +24,6 @@ class Solution_64061 {
 
         for (int m : moves) {
             for (int i = 0; i < n; i++) {
-
                 if (board[i][m - 1] != 0) {
                     int doll = board[i][m - 1];
                     board[i][m - 1] = 0;
@@ -34,8 +33,7 @@ class Solution_64061 {
                         break;
                     }
 
-                    int top = s.peek();
-                    if (top == doll) { // if the doll on top is same, pop from stack
+                    if (s.peek() == doll) { // if the doll on top is same, pop from stack
                         s.pop();
                         answer += 2;
                     } else { // if not same, just push into stack

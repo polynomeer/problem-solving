@@ -46,7 +46,6 @@ class Solution_12930 {
                 answer.append(Character.toLowerCase(s.charAt(i)));
             }
             index++;
-
         }
         return answer.toString();
     }
