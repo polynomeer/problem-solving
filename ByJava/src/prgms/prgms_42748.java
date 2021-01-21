@@ -24,7 +24,7 @@ class Solution_42748 {
         List<Integer> arr = Arrays.stream(array).boxed().collect(Collectors.toList());
         ArrayList<Integer> answer = new ArrayList<>();
         for (int[] cmd : commands) {
-            ArrayList<Integer> arrayList = new ArrayList<Integer>(arr.subList(cmd[0] - 1, cmd[1]));
+            List<Integer> arrayList = new ArrayList<>(arr.subList(cmd[0] - 1, cmd[1]));
             Collections.sort(arrayList);
             answer.add(arrayList.get(cmd[2] - 1));
         }
