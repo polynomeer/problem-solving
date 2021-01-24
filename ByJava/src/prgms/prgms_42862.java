@@ -17,52 +17,31 @@ public class prgms_42862 {
 
 class Solution_42862 {
     public int solution(int n, int[] lost, int[] reserve) {
-        int answer1 = 0, answer2 = 0;
+        int answer = 0;
         int[] count = new int[n];
         Arrays.fill(count, 1);
+
         for (int r : reserve) {
             count[r - 1] = 2;
         }
         for (int l : lost) {
             count[l - 1]--;
         }
-        int[] tempCount = Arrays.copyOf(count, n);
-        for (int i = 1; i < n; i++) {
-            if (count[i] == 0 && count[i - 1] == 2) {
-                count[i - 1]--;
-                count[i]++;
-            }
-        }
-        for (int i = n - 2; i >= 0; i--) {
-            if (count[i] == 0 && count[i + 1] == 2) {
-                count[i + 1]--;
-                count[i]++;
-            }
-        }
-        for (int i = 0; i < n; i++) {
-            if (count[i] > 0) {
-                answer1++;
-            }
-        }
-
-        for (int i = n - 2; i >= 0; i--) {
-            if (tempCount[i] == 0 && tempCount[i + 1] == 2) {
-                tempCount[i + 1]--;
-                tempCount[i]++;
-            }
-        }
-        for (int i = 1; i < n; i++) {
-            if (tempCount[i] == 0 && tempCount[i - 1] == 2) {
-                tempCount[i - 1]--;
-                tempCount[i]++;
-            }
-        }
 
         for (int i = 0; i < n; i++) {
-            if (tempCount[i] > 0) {
-                answer2++;
+            if (count[i] == 0) {
+                if (i - 1 >= 0 && count[i - 1] == 2) {
+                    count[i - 1]--;
+                    count[i]++;
+                } else if (i + 1 < n && count[i + 1] == 2) {
+                    count[i + 1]--;
+                    count[i]++;
+                }
             }
         }
-        return Math.max(answer1, answer2);
+        for (int c : count){
+            if (c > 0) answer++;
+        }
+        return answer;
     }
 }
