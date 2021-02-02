@@ -3,26 +3,26 @@ package prgms;
 class Solution_68935 {
     public int solution(int n) {
         if (n == 0) return n;
-        String reversed = "";
+        int reversed = 0;
         while (n > 0) {
-            reversed += Integer.toString(n % 3);
+            reversed *= 10;
+            reversed += n % 3;
             n /= 3;
         }
-//        System.out.println(reversed);
-        int reversedInt = Integer.parseInt(reversed);
+        System.out.println(reversed);
         int answer = 0;
         int power = 0;
-        while (reversedInt > 0) {
+        while (reversed > 0) {
 
             int multi = 1;
             for (int i = 0; i < power; i++) {
                 multi *= 3;
             }
-            int temp = (reversedInt % 10) * multi;
-//            System.out.println("multi = " + multi + " temp = " + temp + " reversedInt = " + reversedInt + " power = " + power);
+            int temp = (reversed % 10) * multi;
+            System.out.println("multi = " + multi + " temp = " + temp + " reversed = " + reversed + " power = " + power);
             answer += temp;
             power++;
-            reversedInt /= 10;
+            reversed /= 10;
         }
 
         return answer;
@@ -37,6 +37,6 @@ public class prgms_68935 {
         System.out.println(sol.solution(3));
         System.out.println(sol.solution(1));
         System.out.println(sol.solution(0));
-        System.out.println(sol.solution(100000000));
+        System.out.println(sol.solution(100000));
     }
 }
