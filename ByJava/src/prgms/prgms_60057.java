@@ -3,13 +3,12 @@ package prgms;
 class Solution_60057 {
     public int solution(String s) {
         int answer = s.length();
-        StringBuilder sb = new StringBuilder();
 
-        for (int i = 1; i <= s.length() / 2; i++) {
-            String convert = compress(s, i);
-//            System.out.println(convert);
+        for (int unitSize = 1; unitSize <= s.length() / 2; unitSize++) {
+            String convert = compress(s, unitSize);
             answer = Math.min(answer, convert.length());
         }
+
         return answer;
     }
 
@@ -33,6 +32,7 @@ class Solution_60057 {
             unit = substring;
             count = 1;
         }
+
         if (count > 1) convert.append(Integer.toString(count));
         convert.append(unit);
 
