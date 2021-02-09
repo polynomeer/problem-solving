@@ -6,33 +6,37 @@ class Solution_60057 {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 1; i <= s.length() / 2; i++) {
-            StringBuilder convert = new StringBuilder();
-            String unit;
-            int count = 1;
-            unit = s.substring(0, i);
-
-            for (int j = i; j < s.length(); j += i) {
-                if (j + i > s.length()) {
-                    convert.append(s.substring(j, s.length()));
-                    break;
-                }
-                if (unit.equals(s.substring(j, (j + i)))) {
-                    count++;
-                } else {
-                    if (count > 1) convert.append(Integer.toString(count));
-                    convert.append(unit);
-                    unit = s.substring(j, (j + i));
-                    count = 1;
-                }
-
-            }
-            if (count > 1) convert.append(Integer.toString(count));
-
-            convert.append(unit);
+            String convert = compress(s, i);
 //            System.out.println(convert);
             answer = Math.min(answer, convert.length());
         }
         return answer;
+    }
+
+    private String compress(String s, int i) {
+        StringBuilder convert = new StringBuilder();
+        String unit = s.substring(0, i);
+        int count = 1;
+
+        for (int j = i; j < s.length(); j += i) {
+            if (j + i > s.length()) {
+                convert.append(s.substring(j, s.length()));
+                break;
+            }
+            String substring = s.substring(j, (j + i));
+            if (unit.equals(substring)) {
+                count++;
+                continue;
+            }
+            if (count > 1) convert.append(Integer.toString(count));
+            convert.append(unit);
+            unit = substring;
+            count = 1;
+        }
+        if (count > 1) convert.append(Integer.toString(count));
+        convert.append(unit);
+
+        return convert.toString();
     }
 }
 
