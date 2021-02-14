@@ -32,7 +32,14 @@ class Solution_42839 {
     public int solution(String numbers) {
         Permutation permutation = new Permutation();
         int answer = 0;
-        permutation.permute(numbers, 0, numbers.length() - 1);
+        for (int i = 0; i < numbers.length(); i++) {
+            String s = numbers.substring(i, numbers.length());
+            permutation.permute(s, 0, s.length() - 1);
+        }
+        for (int i = numbers.length() - 1; i >= 0; i--) {
+            String s = numbers.substring(i, numbers.length());
+            permutation.permute(s, 0, s.length() - 1);
+        }
 
         Set<Character> set = new HashSet<>();
         for (char c : numbers.toCharArray()) {
@@ -64,6 +71,6 @@ public class prgms_42839 {
         System.out.println(sol.solution("011") == 2);
         System.out.println(sol.solution("1231") == 18);
         System.out.println(sol.solution("1234") == 14);
-        System.out.println(sol.solution("7843")==12);
+        System.out.println(sol.solution("7843") == 12);
     }
 }
