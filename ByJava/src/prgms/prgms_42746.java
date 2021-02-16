@@ -1,16 +1,14 @@
 package prgms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 class Solution_42746 {
-    List<String> list = new ArrayList<>();
+    TreeSet<String> set = new TreeSet<>();
 
     class Permutation {
         public void permute(String[] str, int l, int r) {
             if (l == r) {
-                list.add(combine(str));
+                set.add(combine(str));
             } else {
                 for (int i = l; i <= r; i++) {
                     str = swap(str, l, i);
@@ -45,9 +43,8 @@ class Solution_42746 {
         }
 
         permutation.permute(numberStrings, 0, numbers.length - 1);
-        Collections.sort(list);
 
-        return list.get(list.size()-1).toString();
+        return set.last();
     }
 }
 
