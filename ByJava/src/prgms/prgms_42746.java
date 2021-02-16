@@ -5,13 +5,12 @@ import java.util.Collections;
 import java.util.List;
 
 class Solution_42746 {
-    List<Long> list = new ArrayList<>();
+    List<String> list = new ArrayList<>();
 
     class Permutation {
         public void permute(String[] str, int l, int r) {
             if (l == r) {
-                Long num = Long.parseLong(combine(str));
-                list.add(num);
+                list.add(combine(str));
             } else {
                 for (int i = l; i <= r; i++) {
                     str = swap(str, l, i);
