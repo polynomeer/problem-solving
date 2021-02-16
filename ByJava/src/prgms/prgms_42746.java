@@ -3,48 +3,20 @@ package prgms;
 import java.util.*;
 
 class Solution_42746 {
-    TreeSet<String> set = new TreeSet<>();
-
-    class Permutation {
-        public void permute(String[] str, int l, int r) {
-            if (l == r) {
-                set.add(combine(str));
-            } else {
-                for (int i = l; i <= r; i++) {
-                    str = swap(str, l, i);
-                    permute(str, l + 1, r);
-                    str = swap(str, l, i);
-                }
-            }
+    public String solution(int[] numbers) {
+        TreeSet<String> set = new TreeSet<>(Comparator.reverseOrder());
+        for (int n : numbers){
+            set.add(Integer.toString(n));
         }
-
-        private String combine(String[] str){
-            StringBuilder sb = new StringBuilder();
-            for (String s : str) {
-                sb.append(s);
-            }
-            return sb.toString();
-        }
-
-        public String[] swap(String[] s, int i, int j) {
-            String temp = s[i];
-            s[i] = s[j];
-            s[j] = temp;
-            return s;
-        }
+        return combine(set);
     }
 
-    public String solution(int[] numbers) {
-        Permutation permutation = new Permutation();
-        String[] numberStrings = new String[numbers.length];
-
-        for (int i = 0; i < numbers.length; i++) {
-            numberStrings[i] = Integer.toString(numbers[i]);
+    private String combine(TreeSet<String> set){
+        StringBuilder sb = new StringBuilder();
+        for (String s : set){
+            sb.append(s);
         }
-
-        permutation.permute(numberStrings, 0, numbers.length - 1);
-
-        return set.last();
+        return sb.toString();
     }
 }
 
