@@ -1,7 +1,5 @@
 package codingtest.in2020;
 
-import java.util.Scanner;
-
 class SolutionToss1 {
     public boolean solution(String s) {
         char[] c = s.toCharArray();
