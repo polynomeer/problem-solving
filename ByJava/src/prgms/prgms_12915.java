@@ -4,35 +4,36 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class Strings implements Comparable<Strings> {
+class WordClass implements Comparable<WordClass> {
     String word;
     char target;
 
-    public Strings(String word, char target) {
+    public WordClass(String word, char target) {
         this.word = word;
         this.target = target;
     }
 
-    public int compareTo(Strings s) {
-        if (this.target != s.target) {
-            return this.target - s.target;
+    @Override
+    public int compareTo(WordClass w) {
+        if (this.target != w.target) {
+            return this.target - w.target;
         } else {
-            return this.word.compareTo(s.word);
+            return this.word.compareTo(w.word);
         }
     }
 }
 
 class Solution_12915 {
     public List<String> solution(String[] strings, int n) {
-        List<Strings> stringList = new ArrayList<>();
+        List<WordClass> stringList = new ArrayList<>();
         for (String s : strings) {
             char target = s.charAt(n);
-            stringList.add(new Strings(s, target));
+            stringList.add(new WordClass(s, target));
         }
         Collections.sort(stringList);
         List<String> answer = new ArrayList<>();
-        for (Strings s : stringList) {
-            answer.add(s.word);
+        for (WordClass w : stringList) {
+            answer.add(w.word);
         }
         return answer;
     }
