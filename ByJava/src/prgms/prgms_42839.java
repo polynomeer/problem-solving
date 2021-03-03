@@ -1,14 +1,14 @@
 package prgms;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 class Permutation {
-    public Set<String> permutations = new HashSet<>();
+    public Set<Integer> permutations = new TreeSet<>();
 
     public void permute(String str, int l, int r) {
-        if (l == r && !permutations.contains(str)) {
-            permutations.add(str);
+        if (l == r && !permutations.contains(Integer.parseInt(str))) {
+            permutations.add(Integer.parseInt(str));
         } else {
             for (int i = l; i <= r; i++) {
                 str = swap(str, l, i);
@@ -33,24 +33,17 @@ class Solution_42839 {
         Permutation permutation = new Permutation();
         int answer = 0;
         for (int i = 0; i < numbers.length(); i++) {
-            String s = numbers.substring(i, numbers.length());
-            permutation.permute(s, 0, s.length() - 1);
-        }
-        for (int i = numbers.length() - 1; i >= 0; i--) {
-            String s = numbers.substring(i, numbers.length());
-            permutation.permute(s, 0, s.length() - 1);
+            for (int j = i; j <= numbers.length(); j++) {
+                String s = numbers.substring(i, j);
+                permutation.permute(s, 0, s.length() - 1);
+            }
         }
 
-        Set<Character> set = new HashSet<>();
-        for (char c : numbers.toCharArray()) {
-            set.add(c);
+        for (int num : permutation.permutations) {
+//            System.out.println(num);
+            if (isPrime(num)) answer++;
         }
-        for (char c : set) {
-            if (isPrime(Integer.parseInt(String.valueOf(c)))) answer++;
-        }
-        for (String s : permutation.permutations) {
-            if (isPrime(Integer.parseInt(s))) answer++;
-        }
+        System.out.println("answer = " + answer);
         return answer;
     }
 
@@ -68,9 +61,13 @@ public class prgms_42839 {
     public static void main(String[] args) {
         Solution_42839 sol = new Solution_42839();
         System.out.println(sol.solution("17") == 3);
+        sol = new Solution_42839();
         System.out.println(sol.solution("011") == 2);
+        sol = new Solution_42839();
         System.out.println(sol.solution("1231") == 18);
+        sol = new Solution_42839();
         System.out.println(sol.solution("1234") == 14);
+        sol = new Solution_42839();
         System.out.println(sol.solution("7843") == 12);
     }
 }
