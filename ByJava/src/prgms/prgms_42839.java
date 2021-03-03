@@ -1,14 +1,15 @@
 package prgms;
 
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 class Permutation {
-    public Set<Integer> permutations = new TreeSet<>();
+    public Set<Integer> set = new TreeSet<>();
 
     public void permute(String str, int l, int r) {
-        if (l == r && !permutations.contains(Integer.parseInt(str))) {
-            permutations.add(Integer.parseInt(str));
+        if (str.equals("")) return;
+        if (l == r && !set.contains(Integer.parseInt(str))) {
+            set.add(Integer.parseInt(str));
+            System.out.println(str);
         } else {
             for (int i = l; i <= r; i++) {
                 str = swap(str, l, i);
@@ -31,28 +32,32 @@ class Permutation {
 class Solution_42839 {
     public int solution(String numbers) {
         Permutation permutation = new Permutation();
-        int answer = 0;
         for (int i = 0; i < numbers.length(); i++) {
-            for (int j = i; j <= numbers.length(); j++) {
-                String s = numbers.substring(i, j);
-                permutation.permute(s, 0, s.length() - 1);
+            for (int j = i; j < numbers.length(); j++) {
+                String prefix = numbers.substring(i, j);
+                String postfix = numbers.substring(j);
+                permutation.permute(prefix, 0, prefix.length() - 1);
+                permutation.permute(postfix, 0, postfix.length() - 1);
+            }
+
+        }
+
+        int count = 0;
+        for (int num : permutation.set) {
+            if (isPrime(num)) {
+//                System.out.println(num);
+                count++;
             }
         }
-
-        for (int num : permutation.permutations) {
-//            System.out.println(num);
-            if (isPrime(num)) answer++;
-        }
-        System.out.println("answer = " + answer);
-        return answer;
+        System.out.println("count : " + count);
+        return count;
     }
 
-    boolean isPrime(int num) {
-        if (num <= 1) return false;
-        for (int i = 2; i <= num / 2; i++) {
-            if (num % i == 0) return false;
+    public boolean isPrime(int n) {
+        if (n < 2) return false;
+        for (int i = 2; i <= (int) Math.sqrt(n); i++) {
+            if (n % i == 0) return false;
         }
-        System.out.println(num);
         return true;
     }
 }
