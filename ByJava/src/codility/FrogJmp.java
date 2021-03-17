@@ -2,10 +2,9 @@ package codility;
 
 class FrogJmpSolution {
     public int solution(int X, int Y, int D) {
-        int answer = 0;
-        while (X + answer * D < Y) {
-            answer++;
-        }
+        int temp = Y - X;
+        int answer = temp / D;
+        if (temp % D != 0) answer++;
         return answer;
     }
 }
