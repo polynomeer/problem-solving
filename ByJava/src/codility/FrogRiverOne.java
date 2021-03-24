@@ -1,17 +1,17 @@
 package codility;
 
-import java.util.HashSet;
-import java.util.Set;
-
 class FrogRiverOneSolution {
     public int solution(int X, int[] A) {
-        Set<Integer> leaves = new HashSet<>();
-
+        boolean[] leaves = new boolean[X + 1];
+        int count = 0;
         for (int i = 0; i < A.length; i++) {
-            if (A[i] <= X)
-                leaves.add(A[i]);
-            if (leaves.size() == X)
+            if (!leaves[A[i]]) {
+                leaves[A[i]] = true;
+                count++;
+            }
+            if (count == X) {
                 return i;
+            }
         }
         return -1;
     }
