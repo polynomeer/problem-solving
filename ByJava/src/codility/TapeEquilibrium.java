@@ -1,57 +1,56 @@
 package codility;
 
+/*
+public int solution(int[] A) {
+        int minDiff = 987654321;
+
+        for (int p = 1; p < A.length; p++) {
+        int leftSum = 0;
+        for (int i = 0; i < p; i++) leftSum += A[i];
+
+        int rightSum = 0;
+        for (int i = p; i < A.length; i++) rightSum += A[i];
+
+        int diff = leftSum - rightSum;
+        diff = diff > 0 ? diff : -diff;
+        minDiff = Math.min(diff, minDiff);
+        }
+
+        return minDiff;
+        }*/
+
 import java.util.Arrays;
 
 class TapeEquilibriumSolution {
     public int solution(int[] A) {
-        int answer = 0;
-        Arrays.sort(A);
-        int max = A[A.length - 1];
+        int[] leftSums = new int[A.length - 1];
+        int[] rightSums = new int[A.length - 1];
+        int[] diffs = new int[A.length - 1];
+        int sum = 0;
 
-        if (A.length == 0) return 0;
-        if (A.length == 1) return A[0];
-
-        int index = BinarySearch(A, max);
-        int leftSum = 0;
-        for (int i = 0; i < index; i++) {
-            leftSum += A[i];
+        for (int a : A) {
+            sum += a;
         }
-        int rightSum = 0;
-        for (int i = index; i < A.length; i++) {
-            rightSum += A[i];
+
+        leftSums[0] = A[0];
+
+        for (int i = 1; i < leftSums.length; i++) {
+            leftSums[i] = leftSums[i - 1] + A[i];
         }
-        answer = Math.abs(leftSum - rightSum);
 
-        if (A.length == 2) return answer;
+        rightSums[0] = sum - leftSums[0];
+        diffs[0] = leftSums[0] - rightSums[0];
+        diffs[0] = diffs[0] >= 0 ? diffs[0] : -diffs[0];
 
-        int leftTemp = leftSum - A[index - 1];
-        int rightTemp = rightSum + A[index - 1];
-        int temp = Math.abs(leftTemp - rightTemp);
-        if (leftTemp != 0) answer = Math.min(answer, temp);
-        leftTemp = leftSum + A[index];
-        rightTemp = rightSum - A[index];
-        temp = Math.abs(leftTemp - rightTemp);
-        if (rightTemp != 0) answer = Math.min(answer, temp);
-
-        return answer;
-    }
-
-    private int BinarySearch(int[] arr, int target) {
-        int low = 0;
-        int high = arr.length - 1;
-        int mid;
-
-        while (low <= high) {
-            mid = (low + high) / 2;
-
-            if (arr[mid] == target)
-                return mid;
-            else if (arr[mid] > target)
-                high = mid - 1;
-            else
-                low = mid + 1;
+        for (int i = 1; i < rightSums.length; i++) {
+            rightSums[i] = sum - leftSums[i];
+            diffs[i] = leftSums[i] - rightSums[i];
+            diffs[i] = diffs[i] >= 0 ? diffs[i] : -diffs[i];
         }
-        return -1;
+
+        Arrays.sort(diffs);
+
+        return diffs[0];
     }
 }
 
