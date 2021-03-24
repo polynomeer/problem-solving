@@ -6,14 +6,19 @@ class MaxCountersSolution {
     public int[] solution(int N, int[] A) {
         int[] answer = new int[N];
         int max = 0;
+        boolean maxCounterFlag = false;
 
         for (int a : A) {
             if (a <= N) {
+                maxCounterFlag = false;
                 answer[a - 1]++;
                 max = Math.max(answer[a - 1], max);
             }
             if (a == N + 1) {
-                Arrays.fill(answer, max);
+                if (!maxCounterFlag) {
+                    maxCounterFlag = true;
+                    Arrays.fill(answer, max);
+                }
             }
         }
         return answer;
