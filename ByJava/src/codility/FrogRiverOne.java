@@ -1,25 +1,19 @@
 package codility;
 
+import java.util.HashSet;
+import java.util.Set;
+
 class FrogRiverOneSolution {
     public int solution(int X, int[] A) {
-        int[] leaves = new int[X + 1];
+        Set<Integer> leaves = new HashSet<>();
 
         for (int i = 0; i < A.length; i++) {
-            leaves[A[i]]++;
-            if (checkPossible(X, leaves)) {
+            if (A[i] <= X)
+                leaves.add(A[i]);
+            if (leaves.size() == X)
                 return i;
-            }
         }
         return -1;
-    }
-
-    private boolean checkPossible(int x, int[] leaves) {
-        for (int i = 1; i < x + 1; i++) {
-            if (leaves[i] == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }
 
