@@ -2,9 +2,8 @@ package codingtest.in2020;
 
 import java.util.Arrays;
 
-public class PrgmsWinterCoding1 {
-    public static String solution(int n, int[][] deliveryList) {
-        String answer = "";
+class PrgmsWinterCoding1Solution {
+    public String solution(int n, int[][] deliveryList) {
         char[] result = new char[n];
         Arrays.fill(result, '?');
 
@@ -23,9 +22,12 @@ public class PrgmsWinterCoding1 {
         }
         return String.valueOf(result);
     }
+}
 
+public class PrgmsWinterCoding1 {
     public static void main(String[] args) {
-        System.out.println(solution(6, new int[][]{{1, 3, 1}, {3, 5, 0}, {5, 4, 0}, {2, 5, 0}}));
-        System.out.println(solution(7, new int[][]{{5, 6, 0}, {1, 3, 1}, {1, 5, 0}, {7, 6, 0}, {3, 7, 1}, {2, 5, 0}}));
+        PrgmsWinterCoding1Solution sol = new PrgmsWinterCoding1Solution();
+        System.out.println(sol.solution(6, new int[][]{{1, 3, 1}, {3, 5, 0}, {5, 4, 0}, {2, 5, 0}}));
+        System.out.println(sol.solution(7, new int[][]{{5, 6, 0}, {1, 3, 1}, {1, 5, 0}, {7, 6, 0}, {3, 7, 1}, {2, 5, 0}}));
     }
 }
