@@ -2,7 +2,7 @@ package codingtest.in2020;
 
 import java.util.Arrays;
 
-public class PrgmsWinter1 {
+public class PrgmsWinterCoding1 {
     public static String solution(int n, int[][] deliveryList) {
         String answer = "";
         char[] result = new char[n];
