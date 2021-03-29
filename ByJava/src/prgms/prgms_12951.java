@@ -4,18 +4,20 @@ class Solution_12951 {
     public String solution(String s) {
         if (s.length() < 1) return s;
 
-        StringBuilder answer = new StringBuilder();
-        String[] tokens = s.split(" +");
+        s = s.toLowerCase();
+        char[] chars = s.toCharArray();
 
-        for (String token : tokens) {
-            token = token.toLowerCase();
-            char[] chars = token.toCharArray();
-            if (chars[0] >= 'a' && chars[0] <= 'z') {
-                chars[0] = Character.toUpperCase(chars[0]);
-            }
-            answer.append(chars).append(" ");
+        if (chars[0] >= 'a' && chars[0] <= 'z') {
+            chars[0] = Character.toUpperCase(chars[0]);
         }
-        return answer.toString().trim();
+
+        for (int i = 1; i < s.length(); i++) {
+            if (chars[i - 1] == ' ' && chars[i] >= 'a' && chars[i] <= 'z') {
+                chars[i] = Character.toUpperCase(chars[i]);
+            }
+        }
+
+        return String.valueOf(chars);
     }
 }
 
