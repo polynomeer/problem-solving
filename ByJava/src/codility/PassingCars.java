@@ -1,5 +1,10 @@
 package codility;
-
+// 0 1 0 1 1
+//->
+//  <-
+//    ->
+//      <-
+//        <-
 class PassingCarsSolution {
     public int solution(int[] A) {
         int answer = 0;
@@ -20,14 +25,18 @@ class PassingCarsSolution {
                 answer += west[i];
             }
         }
-
-        for (int w : west) {
-            System.out.print(w + " ");
+        if (answer > 1_000_000_000 || answer < -1_000_000_000) {
+            answer = -1;
         }
-        System.out.println();
+
+//        for (int w : west) {
+//            System.out.print(w + " ");
+//        }
+//        System.out.println();
         return answer;
     }
 }
+
 
 public class PassingCars {
     public static void main(String[] args) {
