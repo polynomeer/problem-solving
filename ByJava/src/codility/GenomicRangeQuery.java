@@ -6,11 +6,19 @@ class GenomicRangeQuerySolution {
     public int[] solution(String S, int[] P, int[] Q) {
         int M = P.length;
         int answer[] = new int[M];
-        char[] nucleotides = S.toCharArray();
+        char[] totalNucleotides = S.toCharArray();
+
         for (int i = 0; i < M; i++) {
-            int p = toFactor(nucleotides[P[i]]);
-            int q = toFactor(nucleotides[Q[i]]);
-            answer[i] = Math.min(p, q);
+            String partialNucleotides = S.substring(P[i], Q[i]);
+
+            char[] nucleotides = partialNucleotides.toCharArray();
+            Arrays.sort(nucleotides);
+
+            if (nucleotides.length > 0) {
+                answer[i] = toFactor(nucleotides[0]);
+            } else {
+                answer[i] = toFactor(S.toCharArray()[P[i]]);
+            }
         }
         return answer;
     }
