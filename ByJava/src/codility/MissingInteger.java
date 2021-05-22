@@ -4,23 +4,16 @@ import java.util.Arrays;
 
 class MissingIntegerSolution {
     public int solution(int[] A) {
+        int value = 1;
         Arrays.sort(A);
-        System.out.println(Arrays.toString(A));
-        if (A[A.length - 1] <= 0) {
-            return 1;
-        }
 
-        int i = 1;
-        for (; i < A.length; i++) {
-            if (A[i - 1] == A[i]) {
-                continue;
-            }
-            if (A[i - 1] + 1 != A[i]) {
-                return A[i] - 1;
+        for (int i : A) {
+            if (i == value) {
+                value++;
             }
         }
 
-        return A[i - 1] + 1;
+        return value;
     }
 }
 
