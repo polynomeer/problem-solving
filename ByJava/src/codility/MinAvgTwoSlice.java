@@ -7,18 +7,26 @@ class MinAvgTwoSliceSolution {
 
         for (int i = 1; i < sums.length; i++) {
             sums[i] = sums[i - 1] + A[i];
-            System.out.println(sums[i]);
         }
 
-        int min = 987654321;
-        for (int i = 0; i < sums.length; i++) {
+        double min = 987654321;
+        int answer = 0;
+        for (int i = 1; i < sums.length; i++) {
             for (int j = i + 1; j < sums.length; j++) {
-                int avg = sums[j] - sums[i] / (j - i);
-                min = Math.min(min, avg);
+                double avg = (double) (sums[j] - sums[i - 1]) / (j - i + 1);
+
+                System.out.println(sums[j] + " - " + sums[i - 1] + " / " + (j - i + 1));
+                System.out.printf("slice(%d,%d) : %.1f\n", i, j, avg);
+
+                if (min > avg) {
+                    min = avg;
+                    answer = i;
+                }
+
             }
         }
 
-        return min;
+        return answer;
     }
 }
 
