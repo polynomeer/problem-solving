@@ -21,6 +21,10 @@ class WoowaTechCourse4Solution {
         }
         answer.add(consequence);
 
+        if (answer.size() == 1) {
+            return answer;
+        }
+
         if (chars[0] == chars[chars.length - 1]) {
             int lastConsequence = answer.get(answer.size() - 1);
             answer.remove(answer.size() - 1);
@@ -39,6 +43,7 @@ public class WoowaTechCourse4 {
         System.out.println(sol.solution("aaabbaaa"));
         System.out.println(sol.solution("wowwow"));
         System.out.println(sol.solution("aaabbbbcccccdddeeea"));
+        System.out.println(sol.solution("aaaaaa"));
 //        System.out.println(Arrays.toString(sol.solution("aaabbaaa")));
 //        System.out.println(Arrays.toString(sol.solution("wowwow")));
     }
