@@ -49,7 +49,6 @@ public class BOJ_1018 {
         int answer = 987654321;
         for (int i = 0; i < n - 7; i++) {
             for (int j = 0; j < m - 7; j++) {
-
                 answer = Math.min(answer, mask(i, j, 'W'));
                 answer = Math.min(answer, mask(i, j, 'B'));
             }
@@ -57,3 +56,41 @@ public class BOJ_1018 {
         System.out.println(answer);
     }
 }
+
+/*import java.util.Scanner;
+
+public class BOJ_1018 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+
+        char[][] board = new char[m][n];
+
+        for (int i = 0; i < m; i++) {
+            String line = scanner.nextLine();
+            char[] chars = line.toCharArray();
+            System.arraycopy(chars, 0, board[i], 0, chars.length);
+        }
+
+        int min = 987654321;
+        for (int i = 0; i < m - 7; i++) {
+            for (int j = 0; j < n - 7; j++) {
+             int paint = mask(board, i, j);
+                min = Math.min(min, paint);
+            }
+        }
+    }
+
+    private static int mask(char[][] board, int row, int col) {
+        int hit = 0;
+        char curr = board[row][col];
+
+        for (int i = row; i < row + 8; i++) {
+            for (int j = col; j < col + 8; j++) {
+                // 인접한 것끼리 비교하면서 진행하려면 너무 복잡해진다.
+            }
+        }
+        return hit;
+    }
+}*/
