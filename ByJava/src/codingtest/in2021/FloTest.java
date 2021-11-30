@@ -21,7 +21,7 @@ import java.util.*;
     }
 }*/
 
-class FloSolution {
+/*class FloSolution {
     public Integer[] solution(int[] nums1, int len1, int[] nums2, int len2) {
         Map<Integer, Integer> map = new TreeMap<>();
         for (int n1 : nums1) {
@@ -41,8 +41,20 @@ class FloSolution {
         }
         return answer;
     }
-}
+}*/
 
+class FloSolution {
+    public int[] solution(int[] nums1, int len1, int[] nums2, int len2) {
+        int j = 0;
+        for (int i = 0; i < nums1.length; i++) {
+            if (nums1[i] == 0) {
+                nums1[i] = nums2[j++];
+            }
+        }
+        Arrays.sort(nums1);
+        return nums1;
+    }
+}
 
 public class FloTest {
     public static void main(String[] args) {
