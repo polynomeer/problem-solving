@@ -1,36 +1,28 @@
 package boj;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class BOJ_10989 {
     private static final int MAX_NUM = 10000;
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        int n = sc.nextInt();
-        int[] arr = new int[n + 1];
-        int[] sorted = new int[n + 1];
-        int[] count = new int[MAX_NUM + 1];
-        int[] countSum = new int[MAX_NUM + 1];
+        int[] cnt = new int[MAX_NUM + 1];
+        int n = Integer.parseInt(br.readLine());
 
-        for (int i = 1; i <= n; i++) {
-            int num = sc.nextInt();
-            arr[i] = num;
-            count[num]++;
+        for (int i = 0; i < n; i++) {
+            cnt[Integer.parseInt(br.readLine())]++;
         }
+        br.close();
 
-        for (int i = 1; i <= MAX_NUM; i++) {
-            countSum[i] = countSum[i - 1] + count[i];
-        }
-
-        for (int i = n; i >= 1; i--) {
-            sorted[countSum[arr[i]]] = arr[i];
-            countSum[arr[i]]--;
-        }
-
-        for (int i = 1; i <= n; i++) {
-            sb.append(sorted[i]).append('\n');
+        for (int i = 1; i < MAX_NUM + 1; i++) {
+            while (cnt[i] > 0) {
+                sb.append(i).append('\n');
+                cnt[i]--;
+            }
         }
         System.out.println(sb);
     }
