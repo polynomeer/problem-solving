@@ -5,6 +5,7 @@ import java.util.*;
 public class BOJ_2751 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        StringBuilder sb = new StringBuilder();
         int n = sc.nextInt();
         List<Integer> list = new ArrayList<>();
 
@@ -14,6 +15,7 @@ public class BOJ_2751 {
 
         Collections.sort(list);
 
-        list.forEach(System.out::println);
+        list.forEach(x -> sb.append(x).append('\n'));
+        System.out.println(sb);
     }
 }
