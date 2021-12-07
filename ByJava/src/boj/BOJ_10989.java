@@ -7,6 +7,7 @@ public class BOJ_10989 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        StringBuilder sb = new StringBuilder();
         int n = sc.nextInt();
         int[] arr = new int[n + 1];
         int[] sorted = new int[n + 1];
@@ -29,7 +30,8 @@ public class BOJ_10989 {
         }
 
         for (int i = 1; i <= n; i++) {
-            System.out.println(sorted[i]);
+            sb.append(sorted[i]).append('\n');
         }
+        System.out.println(sb);
     }
 }
