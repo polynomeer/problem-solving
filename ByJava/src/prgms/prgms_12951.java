@@ -2,19 +2,12 @@ package prgms;
 
 class Solution_12951 {
     public String solution(String s) {
-        if (s.length() < 1) return s;
-
-        s = s.toLowerCase();
-        char[] chars = s.toCharArray();
-
-        if (chars[0] >= 'a' && chars[0] <= 'z') {
-            chars[0] = Character.toUpperCase(chars[0]);
-        }
+        char[] chars = s.toLowerCase().toCharArray();
+        chars[0] = Character.toUpperCase(chars[0]);
 
         for (int i = 1; i < s.length(); i++) {
-            if (chars[i - 1] == ' ' && chars[i] >= 'a' && chars[i] <= 'z') {
+            if (chars[i - 1] == ' ')
                 chars[i] = Character.toUpperCase(chars[i]);
-            }
         }
 
         return String.valueOf(chars);
