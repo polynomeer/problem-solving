@@ -2,7 +2,7 @@ package prgms;
 
 import java.util.Arrays;
 
-class Solution_87390 {
+/*class Solution_87390 {
     public int[] solution(int n, long left, long right) {
         int[] answer = new int[(int) (right - left + 1)];
         int[][] arr = new int[n][n];
@@ -27,6 +27,19 @@ class Solution_87390 {
 
         return answer;
     }
+}*/
+
+class Solution_87390 {
+    public int[] solution(int n, long left, long right) {
+        int[] answer = new int[(int) (right - left + 1)];
+
+        for (int i = 0; i < right - left + 1; i++) {
+            long position = left + i;
+            answer[i] = (int) (Long.max(position / n, position % n) + 1);
+        }
+
+        return answer;
+    }
 }
 
 public class prgms_87390 {
@@ -34,5 +47,6 @@ public class prgms_87390 {
         Solution_87390 sol = new Solution_87390();
         System.out.println(Arrays.toString(sol.solution(3, 2, 5)));
         System.out.println(Arrays.toString(sol.solution(4, 7, 14)));
+//        System.out.println(Arrays.toString(sol.solution(100000, 7, 80000)));
     }
 }
