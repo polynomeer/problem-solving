@@ -1,50 +1,49 @@
 package boj;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_15652 {
+    static int n, m;
+    static int[] arr;
+    static int[] sel;
     static StringBuilder stringBuilder = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = new StringTokenizer(bufferedReader.readLine());
+        StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
 
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
-        int[] arr = new int[n];
-        boolean[] visited = new boolean[n];
+        n = Integer.parseInt(stringTokenizer.nextToken());
+        m = Integer.parseInt(stringTokenizer.nextToken());
+        arr = new int[n];
+        sel = new int[m];
 
         for (int i = 0; i < arr.length; i++) {
             arr[i] = i + 1;
         }
 
-        combination(arr, visited, 0, n, m);
+        process(1, 0);
+
         bufferedWriter.write(stringBuilder.toString());
         bufferedReader.close();
         bufferedWriter.close();
     }
 
-    private static void combination(int[] arr, boolean[] visited, int start, int n, int r) {
-        if (r == 0) {
-            print(arr, visited, n);
+    private static void process(int idx, int cnt) {
+        if (cnt == m) {
+            int x = 0;
+            for (int j = 0; j < n; j++) {
+                stringBuilder.append(sel[x++]).append(" ");
+                if (x == m) break;
+            }
+            stringBuilder.append('\n');
             return;
         }
-        for (int i = start; i < n; i++) {
-            visited[i] = true;
-            combination(arr, visited, i + 1, n, r - 1);
-            visited[i] = false;
-        }
-    }
 
-    private static void print(int[] arr, boolean[] visited, int n) {
-        for (int i = 0; i < n; i++) {
-            if (visited[i]) {
-                stringBuilder.append(arr[i]).append(' ');
-            }
+        for (int i = idx - 1; i < n; i++) {
+            sel[cnt] = arr[i];
+            process(i + 1, cnt + 1);
         }
-        stringBuilder.deleteCharAt(stringBuilder.length() - 1).append('\n');
     }
 }
