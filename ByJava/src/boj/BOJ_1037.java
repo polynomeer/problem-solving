@@ -11,24 +11,19 @@ public class BOJ_1037 {
     public static void main(String[] args) throws IOException {
         int n = Integer.parseInt(bufferedReader.readLine().trim());
         StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-        int div = 0;
-        int multi = 1;
+        int max = -987654321;
+        int min = 987654321;
 
         while (stringTokenizer.hasMoreTokens()) {
             int num = Integer.parseInt(stringTokenizer.nextToken());
-            multi *= num;
-            div = gcd(num, div);
+            max = Math.max(max, num);
+            min = Math.min(min, num);
         }
-        int answer = multi / div;
-        stringBuilder.append(answer);
+
+        stringBuilder.append(max * min);
         bufferedWriter.write(stringBuilder.toString());
         bufferedReader.close();
         bufferedWriter.close();
-    }
-
-    private static int gcd(int p, int q) {
-        if (q == 0) return p;
-        return gcd(q, p % q);
     }
 }
 
