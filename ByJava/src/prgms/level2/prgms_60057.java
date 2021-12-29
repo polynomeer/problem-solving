@@ -1,4 +1,4 @@
-package prgms;
+package prgms.level2;
 
 class Solution_60057 {
     public int solution(String s) {

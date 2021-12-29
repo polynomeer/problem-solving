@@ -1,4 +1,4 @@
-package prgms;
+package prgms.level2;
 
 class Solution_12949 {
     public int[][] solution(int[][] arr1, int[][] arr2) {
