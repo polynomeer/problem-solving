@@ -10,19 +10,8 @@ class Solution_17677 {
         str1 = str1.toUpperCase(Locale.ROOT);
         str2 = str2.toUpperCase(Locale.ROOT);
 
-        for (int i = 0; i < str1.length() - 1; i++) {
-            String substring = str1.substring(i, i + 2);
-            if (substring.charAt(0) < 'A' || substring.charAt(0) > 'Z') continue;
-            if (substring.charAt(1) < 'A' || substring.charAt(1) > 'Z') continue;
-            map1.put(substring, map1.getOrDefault(substring, 0) + 1);
-        }
-
-        for (int i = 0; i < str2.length() - 1; i++) {
-            String substring = str2.substring(i, i + 2);
-            if (substring.charAt(0) < 'A' || substring.charAt(0) > 'Z') continue;
-            if (substring.charAt(1) < 'A' || substring.charAt(1) > 'Z') continue;
-            map2.put(substring, map2.getOrDefault(substring, 0) + 1);
-        }
+        substring(str1, map1);
+        substring(str2, map2);
 
         int intersection = 0;
         int union = 0;
@@ -44,6 +33,15 @@ class Solution_17677 {
             answer = (int) ((double) intersection / union * 65536);
         }
         return answer;
+    }
+
+    private void substring(String str1, Map<String, Integer> map1) {
+        for (int i = 0; i < str1.length() - 1; i++) {
+            String substring = str1.substring(i, i + 2);
+            if (substring.charAt(0) < 'A' || substring.charAt(0) > 'Z') continue;
+            if (substring.charAt(1) < 'A' || substring.charAt(1) > 'Z') continue;
+            map1.put(substring, map1.getOrDefault(substring, 0) + 1);
+        }
     }
 }
 
