@@ -12,15 +12,15 @@ class Solution_17677 {
 
         for (int i = 0; i < str1.length() - 1; i++) {
             String substring = str1.substring(i, i + 2);
-            if (substring.charAt(0) < 'A' || substring.charAt(0) > 'Z') break;
-            if (substring.charAt(1) < 'A' || substring.charAt(1) > 'Z') break;
+            if (substring.charAt(0) < 'A' || substring.charAt(0) > 'Z') continue;
+            if (substring.charAt(1) < 'A' || substring.charAt(1) > 'Z') continue;
             map1.put(substring, map1.getOrDefault(substring, 0) + 1);
         }
 
         for (int i = 0; i < str2.length() - 1; i++) {
             String substring = str2.substring(i, i + 2);
-            if (substring.charAt(0) < 'A' || substring.charAt(0) > 'Z') break;
-            if (substring.charAt(1) < 'A' || substring.charAt(1) > 'Z') break;
+            if (substring.charAt(0) < 'A' || substring.charAt(0) > 'Z') continue;
+            if (substring.charAt(1) < 'A' || substring.charAt(1) > 'Z') continue;
             map2.put(substring, map2.getOrDefault(substring, 0) + 1);
         }
 
@@ -39,8 +39,7 @@ class Solution_17677 {
                 union += map2.get(key);
             }
         }
-        System.out.println("intersection = " + intersection);
-        System.out.println("union = " + union);
+
         if (union != 0) {
             answer = (int) ((double) intersection / union * 65536);
         }
