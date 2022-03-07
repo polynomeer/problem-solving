@@ -41,9 +41,46 @@ class Solution_72411 {
     }
 }
 
+class Solution_re {
+    public String[] solution(String[] orders, int[] course) {
+        String[] answer = {};
+
+        for (String order : orders) {
+
+            for (String o : orders) {
+                StringBuilder possibleCourse = new StringBuilder();
+                int[] alphabet1 = new int['Z' - 'A' + 1];
+                int[] alphabet2 = new int['Z' - 'A' + 1];
+                char[] c1 = order.toCharArray();
+                char[] c2 = order.toCharArray();
+
+                for (char c : c1) {
+                    alphabet1[c - 'A']++;
+                }
+
+                for (char c : c2) {
+                    alphabet2[c - 'A']++;
+                }
+
+                for (int i = 0; i < alphabet1.length; i++) {
+                    System.out.println((char) (i + 'A') + " = " + alphabet1[i]);
+                    if (alphabet1[i] == alphabet2[i]) {
+                        possibleCourse.append((char) (alphabet1[i] + 'A'));
+                    }
+                }
+
+                System.out.println("possibleCourse = " + possibleCourse);
+            }
+        }
+
+        return answer;
+    }
+}
+
 public class prgms_72411 {
     public static void main(String[] args) {
-        Solution_72411 sol = new Solution_72411();
+//        Solution_72411 sol = new Solution_72411();
+        Solution_re sol = new Solution_re();
         System.out.println(Arrays.toString(sol.solution(new String[]{"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"}, new int[]{2, 3, 4})));
         System.out.println(Arrays.toString(sol.solution(new String[]{"ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"}, new int[]{2, 3, 5})));
         System.out.println(Arrays.toString(sol.solution(new String[]{"XYZ", "XWY", "WXA"}, new int[]{2, 3, 4})));
