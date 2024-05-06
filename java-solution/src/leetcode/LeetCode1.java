@@ -1,6 +1,6 @@
 package leetcode;
 
-public class LC_1 {
+public class LeetCode1 {
     public static int[] twoSum(int[] nums, int target) {
         int[] answer = new int[2];
 

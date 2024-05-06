@@ -1,6 +1,6 @@
 package leetcode;
 
-public class LC_13 {
+public class LeetCode13 {
     static final int num[] = {1, 5, 10, 50, 100, 500, 1000};
 
     public static int getNumFromTable(char c) {

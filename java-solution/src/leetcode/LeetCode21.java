@@ -21,7 +21,7 @@ import java.util.List;
 }*/
 
 // reference: https://www.programcreek.com/2012/12/leetcode-merge-two-sorted-lists-java/
-public class LC_21 {
+public class LeetCode21 {
     public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode head = new ListNode();
         ListNode p = head;

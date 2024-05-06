@@ -18,7 +18,7 @@ class ListNode {
     }
 }
 
-public class LC_83 {
+public class LeetCode83 {
 
     public ListNode deleteDuplicates(ListNode head) {
         if (head == null || head.next == null){
@@ -40,7 +40,7 @@ public class LC_83 {
   
 
     public static void main(String[] args) {
-        LC_83 LC83 = new LC_83();
+        LeetCode83 LC83 = new LeetCode83();
 
         ListNode l1_1 = new ListNode(1);
         ListNode l1_2 = new ListNode(1);

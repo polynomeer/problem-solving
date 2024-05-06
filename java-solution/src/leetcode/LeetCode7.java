@@ -1,6 +1,6 @@
 package leetcode;
 
-public class LC_7 {
+public class LeetCode7 {
     public static int reverse(int x) {
         long answer = 0;
         final int MAX_INT = 2147483647;
