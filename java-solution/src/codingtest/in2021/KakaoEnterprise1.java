@@ -1,7 +1,5 @@
 package codingtest.in2021;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.*;
 import java.util.*;
 import java.util.stream.*;
@@ -29,7 +27,7 @@ class KakaoEnterprise1Result {
         }
 
         @Override
-        public int compareTo(@NotNull KakaoEnterprise1Result.Number n) {
+        public int compareTo(KakaoEnterprise1Result.Number n) {
             if (cardinality < n.cardinality) {
                 return -1;
             } else if (cardinality > n.cardinality) {
