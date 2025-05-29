@@ -1,20 +1,13 @@
 package codingtest.in2021;
 
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.function.*;
-import java.util.regex.*;
-import java.util.stream.*;
+import util.TestUtils;
 
-import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-
-class BuzzvilResult2 {
+class BuzzvilSolution2_v1 {
 
     public static int programmerStrings(String s) {
         Map<String, Integer> programmerMap = new HashMap<>();
@@ -56,20 +49,74 @@ class BuzzvilResult2 {
 
 }
 
-public class Buzzvil2 {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
-//        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+class BuzzvilSolution2 {
 
-        String s = bufferedReader.readLine();
+    public static int programmerStrings(String s) {
+        String target = "programmer";
+        Map<Character, Integer> targetCount = getCharCount(target);
 
-        int result = BuzzvilResult2.programmerStrings(s);
+        int n = s.length();
+        int leftEnd = -1;
+        Map<Character, Integer> leftCount = new HashMap<>();
 
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
+        // 찾기: 왼쪽부터 가장 먼저 나오는 programmer 문자열
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            leftCount.put(c, leftCount.getOrDefault(c, 0) + 1);
 
-        bufferedReader.close();
-        bufferedWriter.close();
+            if (isComplete(leftCount, targetCount)) {
+                leftEnd = i;
+                break;
+            }
+        }
+
+        // 찾기: 오른쪽부터 가장 먼저 나오는 programmer 문자열
+        int rightStart = -1;
+        Map<Character, Integer> rightCount = new HashMap<>();
+        for (int i = n - 1; i >= 0; i--) {
+            char c = s.charAt(i);
+            rightCount.put(c, rightCount.getOrDefault(c, 0) + 1);
+
+            if (isComplete(rightCount, targetCount)) {
+                rightStart = i;
+                break;
+            }
+        }
+
+        return rightStart - leftEnd - 1;
+    }
+
+    private static Map<Character, Integer> getCharCount(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : s.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+        return map;
+    }
+
+    private static boolean isComplete(Map<Character, Integer> current, Map<Character, Integer> target) {
+        for (char c : target.keySet()) {
+            if (current.getOrDefault(c, 0) < target.get(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
+
+public class Buzzvil2 {
+    public static void main(String[] args) {
+        List<String> testCases = Arrays.asList(
+                "progxrammerrxproxgrammer",    // 2
+                "xprogxrmaxemrppprmmograeiruu",// 2
+                "programmerprogrammer",        // 0
+                "programmerxxxprozmerqgram",   // 3
+                "xprogrammerxprogrammerx"      // 1
+        );
+
+        List<Integer> expected = Arrays.asList(2, 2, 0, 3, 1);
+
+        TestUtils.runProgrammerStringTests(BuzzvilSolution2::programmerStrings, testCases, expected);
+    }
+}
+
